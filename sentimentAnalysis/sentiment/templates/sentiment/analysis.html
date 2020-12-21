@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>감성 분석 결과</h1>
+    <p>문장: {{ text }}</p>
+    {% if label == 1 %}
+    <p>결과: 긍정</p>
+    {% endif %}
+    {% if label == 0 %}
+    <p>결과: 부정</p>
+    {% endif %}
+
+    <form action="/" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="text" value="{{ text }}">
+        <input type="hidden" name="label" value="{{ label }}">
+        <br>
+        <p>결과가 맞다면 1, 다르다면 0을 입력해주세요</p>
+        <input type="number" name="correct">
+        <button type="submit">제출</button>
+    </form>
+</body>
+</html>
